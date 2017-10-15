@@ -1,6 +1,8 @@
 import sys
 import tkinter
 import time
+#classes
+import morseInfo as mI
 
 def autoModeMenu():#自動モードのメニュー。
     def morseConverter():#入力されたアルファベットを外部でモールス信号にして来て表示する
@@ -43,9 +45,14 @@ def autoModeMenu():#自動モードのメニュー。
             wipi.digitalWrite(buzer_pin,0)
         singleLed_pin = 19
         buzer_pin = 13
-
+        
         for n in morseWordList:
             nowMorse = list(n)#１文字分のモールス信号を一文字ごとに配列に格納。
+            #wannaConvList->["S","O"]
+            #morseWordList->["・・・","ーーー"]
+            #nowMorse->["・","・","・"]
+            #n->"・・・"
+            #h->"・"
             for h in nowMorse:
                 if h == '・':
                     onLED()
@@ -56,10 +63,13 @@ def autoModeMenu():#自動モードのメニュー。
                 elif h== 'ー':
                     onLED()
                     onBuzer()
-                    time.sleep(0.5)
+                    time.sleep(0.6)
                     offLED()
                     offBuzer()
-                    
+                elif h == '_':
+                    time.sleep(1.2)#単語間の空白。1.2+0.2秒待機する。
+                time.sleep(0.2)#点か棒同士の間の空白。
+            time.sleep(0.6)#１文字同士の間の空白。
         print("morseConverter finished.")
 
     def quit():#閉じる・戻るボタン用

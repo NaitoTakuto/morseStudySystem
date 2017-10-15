@@ -1,24 +1,28 @@
 def getMorse(wannaConvList):#アルファベットをモールス信号に変換して返す
     print("Using the getMorse.")
     morseDict = {
-        'a':"・－",     'b':"ー・・・",
-        'c':"ー・－・",  'd':"ー・・",
-        'e':"・",       'f':"・・－・",
-        'g':"ーー・",   'h':"・・・・",
-        'i':"・・",     'j':"・－－－",
-        'k':"ー・－",   'l':"・－・・",
-        'm':"ーー",     'n':"ー・",
-        'o':"ーーー",   'p':"・－－・",
-        'q':"ーー・－", 'r':"・－・",
-        's':"・・・",   't':"ー",
-        'u':"・・－",   'v':"・・・－",
-        'w':"・－－",   'x':"ー・・－",
-        'y':"ー・－－", 'z':"ーー・・",
-        '1':"・－－－－",'2':"・・－－－",
-        '3':"・・・－－",'4':"・・・・－",
-        '5':"・・・・・",'6':"ー・・・・",
-        '7':"ーー・・・",'8':"ーーー・・",
-        '9':"ーーーー・",'0':"ーーーーー"
+        'a':"・－",       'b':"ー・・・",
+        'c':"ー・－・",    'd':"ー・・",
+        'e':"・",         'f':"・・－・",
+        'g':"ーー・",     'h':"・・・・",
+        'i':"・・",       'j':"・－－－",
+        'k':"ー・－",     'l':"・－・・",
+        'm':"ーー",       'n':"ー・",
+        'o':"ーーー",     'p':"・－－・",
+        'q':"ーー・－",   'r':"・－・",
+        's':"・・・",     't':"ー",
+        'u':"・・－",     'v':"・・・－",
+        'w':"・－－",     'x':"ー・・－",
+        'y':"ー・－－",   'z':"ーー・・",
+        '1':"・－－－－", '2':"・・－－－",
+        '3':"・・・－－", '4':"・・・・－",
+        '5':"・・・・・", '6':"ー・・・・",
+        '7':"ーー・・・", '8':"ーーー・・",
+        '9':"ーーーー・", '0':"ーーーーー",
+        ' ':"・・・・・・",':':"－－－・・・",
+        ';':"・・・・・－",',':"－－・・－－",
+        '(':" －・－－・", ')':"－・－－・－",
+        '^':"・・・・・－－"
     }
     wordlength = len(wannaConvList)
     resultList = [0 for i in range(wordlength)]
@@ -27,86 +31,85 @@ def getMorse(wannaConvList):#アルファベットをモールス信号に変換
         resultList[count] = morseDict[i]
         count = count + 1
     print(resultList)
-
     return resultList
 
 def morseReader(typingWord):#未使用機能。モールス信号をアルファベットに変換して返す.
     wordLength2 = len(typingWord)
     if wordLength2 == 1:
         if typingWord[0] == '.':
-            return 'E'
+            return 'e'
         elif typingWord[0] == '-':
-            return 'T'
+            return 't'
     elif wordLength2 == 2:
         if typingWord[0] == '.':
             if typingWord[1] == '.':
-                return 'I'
+                return 'i'
             elif typingWord[1] == '-':
-                return 'A'
+                return 'a'
         elif typingWord[0] == '-':
             if typingWord[1] == '.':
-                return 'N'
+                return 'n'
             elif typingWord[1] == '-':
-                return 'M'
+                return 'm'
     elif wordLength2 == 3:
         if typingWord[0] == '.':
             if typingWord[1] == '.':
                 if typingWord[2] == '.':
-                    return 'C'
+                    return 'c'
                 elif typingWord[2] == '-':
-                    return 'U'
+                    return 'u'
             elif typingWord[1] == '-':
                 if typingWord[2] == '.':
-                    return 'R'
+                    return 'r'
                 elif typingWord[2] == '-':
-                    return 'W'
+                    return 'w'
         elif typingWord[0] == '-':
             if typingWord[1] == '.':
                 if typingWord[2] == '.':
-                    return 'D'
+                    return 'd'
                 elif typingWord[2] == '-':
-                    return 'K'
+                    return 'k'
             elif typingWord[1] == '-':
                 if typingWord[2] == '.':
-                    return 'G'
+                    return 'g'
                 elif typingWord[2] == '-':
-                    return 'O'
+                    return 'o'
     elif wordLength2 == 4:#----------------------------------
         if typingWord[0] == '.':
             if typingWord[1] == '.':
                 if typingWord[2] == '.':
                     if typingWord[3] == '.':
-                        return 'H'
+                        return 'h'
                 elif typingWord[2] == '-':
                     if typingWord[3] == '.':
-                        return 'F'
+                        return 'f'
             elif typingWord[1] == '-':
                 if typingWord[2] == '.':
                     if typingWord[3] == '.':
-                        return 'L'
+                        return 'l'
                 elif typingWord[2] == '-':
                     if typingWord[3] == '.':
-                        return 'P'
+                        return 'p'
                     elif typingWord[3] == '-':
-                        return 'J'
+                        return 'j'
         elif typingWord[0] == '-':
             if typingWord[1] == '.':
                 if typingWord[2] == '.':
                     if typingWord[3] == '.':
-                        return 'B'
+                        return 'b'
                     elif typingWord[3] == '-':
-                        return 'X'
+                        return 'x'
                 elif typingWord[2] == '-':
                     if typingWord[3] == '.':
-                        return 'C'
+                        return 'c'
                     elif typingWord[3] == '-':
-                        return 'Y'
+                        return 'y'
             elif typingWord[1] == '-':
                 if typingWord[2] == '.':
                     if typingWord[3] == '.':
-                        return 'Z'
+                        return 'z'
                     elif typingWord[3] == '-':
-                        return 'Q'
+                        return 'q'
         
     elif wordLength2 == 5:#----------------------------------
         if typingWord[0] == '.':
@@ -135,6 +138,10 @@ def morseReader(typingWord):#未使用機能。モールス信号をアルファ
                     if typingWord[3] == '.':
                         if typingWord[4] == '.':
                             return '6'
+                elif typingWord[2] == '-':
+                    if typingWord[3] == '-':
+                        if typingWord[4] == '.':
+                            return '('
             elif typingWord[1] == '-':#'--'
                 if typingWord[2] == '.':
                     if typingWord[3] == '.':
@@ -150,3 +157,48 @@ def morseReader(typingWord):#未使用機能。モールス信号をアルファ
                     elif typingWord[3] == '-':
                         if typingWord[4] == '.':
                             return '9'
+    elif wordLength2 == 6:#----------------------------------
+        if typingWord[0] == '.':
+            if typingWord[1] == '.':
+                if typingWord[2] == '.':
+                    if typingWord[3] == '.':
+                        if typingWord[4] == '.':
+                            if typingWord[5] == '.':
+                                return ' '
+                            elif typingWord[5] == '-':
+                                return ';'
+            elif typingWord[1] == '-':
+                if typingWord[2] == '.':
+                    if typingWord[3] == '.':
+                        if typingWord[4] == '.':
+                            if typingWord[5] == '.':
+                                return '\n'
+        elif typingWord[0] == '-':
+            if typingWord[1] == '.':
+                if typingWord[2] == '-':
+                    if typingWord[3] == '-':
+                        if typingWord[4] == '.':
+                            if typingWord[5] == '-':
+                                return ')'
+            elif typingWord[1] == '-':
+                if typingWord[2] == '.':
+                    if typingWord[3] == '.':
+                        if typingWord[4] == '-':
+                            if typingWord[5] == '-':
+                                return ','
+                elif typingWord[2] == '-':
+                    if typingWord[3] == '.':
+                        if typingWord[4] == '.':
+                            if typingWord[5] == '.':
+                                return ':'
+    elif wordLength2 == 7:#----------------------------------
+        if typingWord[0] == '.':
+            if typingWord[1] == '.':
+                if typingWord[2] == '.':
+                    if typingWord[3] == '.':
+                        if typingWord[4] == '.':
+                            if typingWord[5] == '-':
+                                if typingWord[6] == '-':
+                                    return '^'                                            
+    else:
+        return '?'

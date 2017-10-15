@@ -47,41 +47,39 @@ def readMain():#手動モードのメニュー。
     typeStartButton = tkinter.Label(root,text="Typed word comes in here.")
     typeStartButton.grid(row=1,column=0)
 
-    root.mainloop()
+    #root.mainloop()
 
     while True:#この部分でボタンの判定を行う。
-        if check_pin == 1:
+        if check_pin == 1:#オン
             #On--------------
-            if started == False:
+            if started == False:#押し始めの時間を記録する。
                 #firstTimeOfOn----------------
                 onTime = round(time.time()*100)
+                offedTime = round(time.time()*100)#エラー回避
                 started = True
-                onSecondLED()
-                onBuzer()
-            else:
+            else:#押されている時間を記録する
                 nowTime = round(time.time()*100)
-                pushingTime = nowTime - onTime
-                if 50 < pushingTime:
-                    onSecondLED()
-            if check_pin == 0:
+                if 60 < nowTime - onTime:#棒の長さ分押された時
+                    onSecondLED()#二つ目のLEDを点灯させる
+            onSecondLED()
+            onBuzer()
+            if check_pin == 0:#オフ
                 #Off-----------------
                 offSingleLED()
                 offSecondLED()
                 offBuzer()
                 started = False
-                offTime = round(time.time()*100)
-                pushedTime = offTime - onTime
+                offedTime = round(time.time()*100)
                 #押されてた時間を調べる
-                if pushedTime < 50:
-                    #・
+                if offedTime - onTime < 60:#・
                     typingWord.append('.')
-                elif pushedTime < 100:
-                    #ー
+                elif 60 <= offedTime - onTime:#ー                    
                     typingWord.append('-')
-                else:
-                    #wordEnd
-                    print(typingWord)
-                    typedWord.append(mI.morseReader(typingWord))
-                    typedWordLabel = tkinter.Label(root,text=typedWord)
-                    typedWordLabel.grid(row=1,column=0)
-                    
+        elif check_pin == 0:
+        #押されていなかった時間を調べる
+            nowTime = round(time.time()*100)
+            if nowTime - offedTime > 60:#１文字分の空白が空いた時
+                typedWord = mI.morseReader(typingWord)#判定
+                with open("data.txt",'a') as file:
+                    file.write(typedWord)
+                typingWord = []#次の文字の判定用に初期化
